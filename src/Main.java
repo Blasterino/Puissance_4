@@ -14,6 +14,8 @@ public class Main {
             rep = input.next();
         }
         if (rep.equals("Default")) {
+            //Tester que la puissance est supérieure à deux
+            // Tester que le plateau permet de faire une combinaison (si pas trop petit)
             System.out.println("Donner la puissance du plateau (le nombre de pions à aligner pour gagner :)");
             int puiss = input.nextInt();
             plateau = new Plateau(puiss);

@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class Plateau {
     static final Scanner input = new Scanner(System.in);
 
-    private final String COULEUR_UNE = "1";
-    private final String COULEUR_DEUX = "2";
+    private final String COULEUR_UNE = "Uranus";
+    private final String COULEUR_DEUX = "Saturne";
 
     private char plateau[][];
     private int tour;
@@ -43,7 +43,7 @@ public class Plateau {
 
     public void initPlateau() {
         for (int i=0; i < this.plateau.length; i++) {
-            for (int j=0; j < this.plateau[i].length ; j++) {
+            for (int j=0; j < this.plateau[0].length ; j++) {
                 this.plateau[i][j] = 'o';
             }
         }
@@ -60,7 +60,7 @@ public class Plateau {
 
     private void contenuPlateau() {
         for (int i=0; i < this.plateau.length; i++) {
-            for (int j=0; j < this.plateau[i].length ; j++) {
+            for (int j=0; j < this.plateau[0].length ; j++) {
                 System.out.print(" " + this.plateau[i][j]);
             }
             System.out.println();
@@ -86,7 +86,7 @@ public class Plateau {
     private boolean isPossible(int col) {
         for (int i = (this.plateau.length)-1; i >= -1; i--) {
             if (i == -1) return false;
-            if (col < 0 || col > this.plateau[i].length-1) return false;
+            if (col < 0 || col > this.plateau[0].length-1) return false;
             if (this.plateau[i][col] == 'o') {
                 return true;
             }
@@ -106,15 +106,30 @@ public class Plateau {
             if (isPossible(col)) {
                 for (int i = this.plateau.length-1; i >= 0; i--) {
                     if (this.plateau[i][col] == 'o') {
-                        if (tour % 2 == 0) {
+                        int indice = i; //indice pour check la combinaison
+                        if (this.tour % 2 == 0) {
                             this.plateau[i][col] = this.couleurDeuxieme.charAt(0);
                         }
-                        if (tour % 2 != 0) {
+                        if (this.tour % 2 != 0) {
                             this.plateau[i][col] = this.couleurDebut.charAt(0);
                         }
                         this.contenuPlateau();
+
+                        //insérer ici le test de combinaison, en plus du test de cases libres
+                        if (this.isCombination(col, indice)) {
+                            if (this.tour % 2 == 0) {
+                                System.out.println("Partie terminée, le joueur " + this.couleurDeuxieme + " a gagné.");
+                                System.exit(0);
+                            }
+                            if (this.tour % 2 != 0) {
+                                System.out.println("Partie terminée, le joueur " + this.couleurDebut + " a gagné.");
+                                System.exit(0);
+                            }
+                        }
+
+
                         if (!this.isGameOver()) {
-                            if (tour % 2 == 0) {
+                            if (this.tour % 2 == 0) {
                                 System.out.println("Tour " + this.tour);
                                 System.out.println("Au tour du joueur avec les pions " + this.couleurDebut + ".");
                             } else {
@@ -125,16 +140,6 @@ public class Plateau {
                         else {
                             System.out.println("Plus aucune case n'est libre, fin de la partie.");
                         }
-                        /*if (this.isCombination(col)) {
-
-                            if (tour % 2 == 0) {
-                                System.out.println("Partie terminée, le joueur " + this.couleurDeuxieme + " a gagné.");
-                            }
-                            if (tour % 2 != 0) {
-                                System.out.println("Partie terminée, le joueur " + this.couleurDebut + " a gagné.");
-                            }
-
-                        }*/
                         this.tour++;
                         break;
                     }
@@ -146,7 +151,7 @@ public class Plateau {
     //Teste si des cases sont encore disponibles
     private boolean isGameOver() {
         for (int i=0; i < this.plateau.length; i++) {
-            for (int j=0; j < this.plateau[i].length ; j++) {
+            for (int j=0; j < this.plateau[0].length ; j++) {
                 if (plateau[i][j] == 'o') return false;
             }
         }
@@ -154,9 +159,43 @@ public class Plateau {
     }
 
     //En cours
-    private boolean isCombination(int col) {
+    private boolean isCombination(int col, int ligne) {
+        int compteurCombo = 0;
 
-        return true;
+        //Ligne droite
+        int i = 0;
+        boolean estLineaire = true;
+        while (i < this.puissancePlateau && estLineaire) {
+            if (col+i  >= this.plateau[0].length)
+                estLineaire = false;
+            else {
+                if (this.plateau[ligne][col] == this.plateau[ligne][col + i]) {
+                    compteurCombo++;
+                } else
+                    estLineaire = false;
+            }
+            i++;
+        }
+
+        //Ligne gauche
+        i = 1;
+        estLineaire = true;
+        while (i < this.puissancePlateau && estLineaire && compteurCombo < this.puissancePlateau) {
+            if (col-i  < 0)
+                estLineaire = false;
+            else {
+                if (this.plateau[ligne][col] == this.plateau[ligne][col-i]) {
+                    compteurCombo ++;
+                }
+                else
+                    estLineaire = false;
+            }
+            i++;
+        }
+
+        if (compteurCombo >= this.puissancePlateau) return true;
+
+        return false;
     }
 
     public void jouer() {
