@@ -155,6 +155,7 @@ public class Plateau {
 
     //En cours
     private boolean isCombination(int col) {
+
         return true;
     }
 
