@@ -3,23 +3,45 @@ import java.util.Scanner;
 public class Plateau {
     static final Scanner input = new Scanner(System.in);
 
+    private final String COULEUR_UNE = "1";
+    private final String COULEUR_DEUX = "2";
+
     private char plateau[][];
     private int tour;
+    private String couleurDebut;
+    private String couleurDeuxieme;
 
     public Plateau() {
         this.plateau = new char[6][7];
         this.tour = 1;
+        double alea = random();
+        System.out.println(alea);
+        if (alea > 0.5) {
+            this.couleurDebut = "" + COULEUR_UNE;
+            this.couleurDeuxieme = "" + COULEUR_DEUX;
+        }
+        else {
+            this.couleurDebut = "" + COULEUR_DEUX;
+            this.couleurDeuxieme = "" + COULEUR_UNE;
+        }
         this.initPlateau();
     }
 
     public Plateau(int ligne, int col) {
         this.plateau = new char[ligne][col];
         this.tour = 1;
+        double alea = random();
+        System.out.println(alea);
+        if (alea > 0.5) {
+            this.couleurDebut = "" + COULEUR_UNE;
+            this.couleurDeuxieme = "" + COULEUR_DEUX;
+        }
+        else {
+            this.couleurDebut = "" + COULEUR_DEUX;
+            this.couleurDeuxieme = "" + COULEUR_UNE;
+        }
         this.initPlateau();
     }
-
-
-    //Définir aléatoirement le joueur qui commence
 
     public void initPlateau() {
         for (int i=0; i < this.plateau.length; i++) {
@@ -28,7 +50,14 @@ public class Plateau {
             }
         }
         this.contenuPlateau();
-        System.out.println("Le joueur avec les pions jaunes commence la partie.");
+        if (this.couleurDebut.equals("couleur1")) {
+            System.out.println("Tour " + this.tour);
+            System.out.println("Le joueur avec les pions de couleur " + this.couleurDeuxieme + " commence");
+        }
+        else {
+            System.out.println("Tour : " + this.tour);
+            System.out.println("Le joueur avec les pions de couleur " + this.couleurDebut + " commence");
+        }
     }
 
     private void contenuPlateau() {
@@ -40,9 +69,6 @@ public class Plateau {
         }
         System.out.println();
     }
-
-
-    //Ajouter une autre option si la colonne est en dehors du tableau
 
     private int demanderCol(int err) {
         //erreur 0 pour fonctionnement normal
@@ -83,22 +109,34 @@ public class Plateau {
                 for (int i = this.plateau.length-1; i >= 0; i--) {
                     if (this.plateau[i][col] == 'o') {
                         if (tour % 2 == 0) {
-                            this.plateau[i][col] = 'R';
+                            this.plateau[i][col] = this.couleurDeuxieme.charAt(0);
                         }
                         if (tour % 2 != 0) {
-                            this.plateau[i][col] = 'J';
+                            this.plateau[i][col] = this.couleurDebut.charAt(0);
                         }
                         this.contenuPlateau();
                         if (!this.isGameOver()) {
                             if (tour % 2 == 0) {
-                                System.out.println("Au tour du joueur avec les pions jaunes.");
+                                System.out.println("Tour " + this.tour);
+                                System.out.println("Au tour du joueur avec les pions " + this.couleurDebut + ".");
                             } else {
-                                System.out.println("Au tour du joueur avec les pions rouges.");
+                                System.out.println("Tour " + this.tour);
+                                System.out.println("Au tour du joueur avec les pions " + this.couleurDeuxieme + ".");
                             }
                         }
                         else {
                             System.out.println("Plus aucune case n'est libre, fin de la partie.");
                         }
+                        /*if (this.isCombination(col)) {
+
+                            if (tour % 2 == 0) {
+                                System.out.println("Partie terminée, le joueur " + this.couleurDeuxieme + " a gagné.");
+                            }
+                            if (tour % 2 != 0) {
+                                System.out.println("Partie terminée, le joueur " + this.couleurDebut + " a gagné.");
+                            }
+
+                        }*/
                         this.tour++;
                         break;
                     }
@@ -117,9 +155,17 @@ public class Plateau {
         return true;
     }
 
+    private boolean isCombination(int col) {
+        return true;
+    }
+
     public void jouer() {
         while (!this.isGameOver()) {
             this.mettrePion();
         }
+    }
+
+    private double random() {
+        return Math.random();
     }
 }
