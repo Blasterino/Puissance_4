@@ -1,16 +1,32 @@
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
-        Plateau p1 = new Plateau();
-        p1.initPlateau();
-        p1.contenuPlateau();
-        Plateau p2 = new Plateau(2, 2);
-        p2.initPlateau();
-        p2.contenuPlateau();
-        while (!p2.isGameOver()) {
-            p2.mettrePion();
+        final Scanner input = new Scanner(System.in);
+
+        Plateau plateau;
+        String rep;
+        System.out.println("Entrez \"Default\" ou \"Custom\" pour lancer un type de partie");
+        rep = input.next();
+        while (!rep.equals("Default") && !rep.equals("Custom")) {
+            System.out.println("Entrez \"Defalut\" ou \"Custom\" pour lancer un type de partie");
+            rep = input.next();
         }
 
+        if (rep.equals("Default")) {
+            plateau = new Plateau();
+        }
+        else {
+            int lignes;
+            int colonnes;
+            System.out.println("Entrez le nombre de lignes du plateau :");
+            lignes = input.nextInt();
+            System.out.println("Entrez le nombre de colonnes du plateau :");
+            colonnes = input.nextInt();
+            plateau = new Plateau(lignes, colonnes);
+        }
 
+        plateau.jouer();
     }
 }
