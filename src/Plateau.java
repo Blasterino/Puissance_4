@@ -8,31 +8,30 @@ public class Plateau {
 
     private char plateau[][];
     private int tour;
+    private int puissancePlateau;
     private String couleurDebut;
     private String couleurDeuxieme;
 
-    public Plateau() {
+    public Plateau() {}
+
+    public Plateau(int puissancePlateau) {
         this.plateau = new char[6][7];
         this.tour = 1;
-        double alea = random();
-        System.out.println(alea);
-        if (alea > 0.5) {
-            this.couleurDebut = "" + COULEUR_UNE;
-            this.couleurDeuxieme = "" + COULEUR_DEUX;
-        }
-        else {
-            this.couleurDebut = "" + COULEUR_DEUX;
-            this.couleurDeuxieme = "" + COULEUR_UNE;
-        }
+        this.puissancePlateau = puissancePlateau;
+        this.definirOrdreDeJeu();
         this.initPlateau();
     }
 
-    public Plateau(int ligne, int col) {
+    public Plateau(int ligne, int col, int puissancePlateau) {
         this.plateau = new char[ligne][col];
         this.tour = 1;
-        double alea = random();
-        System.out.println(alea);
-        if (alea > 0.5) {
+        this.puissancePlateau = puissancePlateau;
+        this.definirOrdreDeJeu();
+        this.initPlateau();
+    }
+
+    private void definirOrdreDeJeu() {
+        if (random() > 0.5) {
             this.couleurDebut = "" + COULEUR_UNE;
             this.couleurDeuxieme = "" + COULEUR_DEUX;
         }
@@ -40,7 +39,6 @@ public class Plateau {
             this.couleurDebut = "" + COULEUR_DEUX;
             this.couleurDeuxieme = "" + COULEUR_UNE;
         }
-        this.initPlateau();
     }
 
     public void initPlateau() {
@@ -155,6 +153,7 @@ public class Plateau {
         return true;
     }
 
+    //En cours
     private boolean isCombination(int col) {
         return true;
     }

@@ -14,14 +14,18 @@ public class Main {
             rep = input.next();
         }
         if (rep.equals("Default")) {
-            plateau = new Plateau();
+            System.out.println("Donner la puissance du plateau (le nombre de pions à aligner pour gagner :)");
+            int puiss = input.nextInt();
+            plateau = new Plateau(puiss);
         }
         else {
             System.out.println("Entrez le nombre de lignes du plateau :");
             int lignes = input.nextInt();
             System.out.println("Entrez le nombre de colonnes du plateau :");
             int colonnes = input.nextInt();
-            plateau = new Plateau(lignes, colonnes);
+            System.out.println("Donner la puissance du plateau (le nombre de pions à aligner pour gagner :)");
+            int puiss = input.nextInt();
+            plateau = new Plateau(lignes, colonnes, puiss);
         }
         plateau.jouer();
     }
