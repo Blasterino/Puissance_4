@@ -29,6 +29,7 @@ public class Main {
             int puiss = input.nextInt();
             plateau = new Plateau(lignes, colonnes, puiss);
         }
+        ControlGroup cg = new ControlGroup(plateau);
         plateau.jouer();
     }
 }

@@ -204,6 +204,54 @@ public class Plateau {
         }
     }
 
+    public String getCOULEUR_UNE() {
+        return COULEUR_UNE;
+    }
+
+    public String getCOULEUR_DEUX() {
+        return COULEUR_DEUX;
+    }
+
+    public char[][] getPlateau() {
+        return plateau;
+    }
+
+    public void setPlateau(char[][] plateau) {
+        this.plateau = plateau;
+    }
+
+    public int getTour() {
+        return tour;
+    }
+
+    public void setTour(int tour) {
+        this.tour = tour;
+    }
+
+    public int getPuissancePlateau() {
+        return puissancePlateau;
+    }
+
+    public void setPuissancePlateau(int puissancePlateau) {
+        this.puissancePlateau = puissancePlateau;
+    }
+
+    public String getCouleurDebut() {
+        return couleurDebut;
+    }
+
+    public void setCouleurDebut(String couleurDebut) {
+        this.couleurDebut = couleurDebut;
+    }
+
+    public String getCouleurDeuxieme() {
+        return couleurDeuxieme;
+    }
+
+    public void setCouleurDeuxieme(String couleurDeuxieme) {
+        this.couleurDeuxieme = couleurDeuxieme;
+    }
+
     private double random() {
         return Math.random();
     }
