@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class FenetreJeu extends JFrame {
 
@@ -7,6 +8,7 @@ public class FenetreJeu extends JFrame {
     JPanel[][] grille;
     JButton[] listeColonnes;
     JButton bSauterLigne, bQuitter;
+
 
     public FenetreJeu(Plateau p){
         this.plateau = p;
@@ -27,11 +29,31 @@ public class FenetreJeu extends JFrame {
             }
         }
         bSauterLigne = new JButton("Activer la puissance 4");
-        bQuitter = new JButton("Quitte");
+        bQuitter = new JButton("Quitter");
     }
 
     public void creerVue(){
-        return;
+
+        JPanel panelHaut = new JPanel();
+        panelHaut.add(bQuitter);
+        JPanel panelColonnes = new JPanel(new GridLayout(1,plateau.getPlateau().length));
+        for (JButton butt : listeColonnes){
+            panelColonnes.add(butt);
+        }
+        JPanel panelGrille = new JPanel(new GridLayout(plateau.getPlateau().length,plateau.getPlateau()[0].length));
+        for (int i = 0; i < grille.length; i++){
+            for(JPanel pan : grille[i]){
+                panelGrille.add(pan);
+            }
+        }
+        JPanel panelBas = new JPanel();
+        panelBas.setLayout(new BoxLayout(panelBas,BoxLayout.X_AXIS));
+        JPanel container = new JPanel(new GridLayout(1,4));
+        container.add(panelHaut);
+        container.add(panelColonnes);
+        container.add(panelGrille);
+        container.add(panelBas);
+        setContentPane(container);
     }
 
     public void setControlButton(ControlButtonJeu cb){
