@@ -94,8 +94,8 @@ public class Plateau {
         return false;
     }
 
-    private void mettrePion() {
-        if (!this.isGameOver()) {
+    public void mettrePion(int col) {
+        /*if (!this.isGameOver()) {
             int col = demanderCol(0);
             col = col-1;
 
@@ -103,6 +103,7 @@ public class Plateau {
                 col = demanderCol(1);
                 col = col-1;
             }
+        */
             if (isPossible(col)) {
                 for (int i = this.plateau.length-1; i >= 0; i--) {
                     if (this.plateau[i][col] == 'o') {
