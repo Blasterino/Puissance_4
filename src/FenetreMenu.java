@@ -22,10 +22,7 @@ public class FenetreMenu extends JFrame {
     }
 
     public void creerVue(){
-        JPanel pFenetre = new JPanel();
-        pFenetre.add(lancerPartie);
-        pFenetre.add(quitter);
-        setContentPane(pFenetre);
+        return;
     }
 
     public void setControlButton(ControlButtonMenu cb){

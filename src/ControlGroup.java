@@ -9,7 +9,7 @@ public class ControlGroup {
 
         this.plateau = p;
         this.fenetreMenu = new FenetreMenu(this.plateau);
-        this.controlb = new ControlButtonMenu(this.fenetreMenu, plateau);
+        this.controlb = new ControlButtonMenu(this.fenetreMenu);
 
     }
 

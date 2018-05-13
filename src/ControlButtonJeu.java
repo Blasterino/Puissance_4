@@ -7,7 +7,7 @@ public class ControlButtonJeu implements ActionListener {
     Plateau p;
     FenetreJeu f;
 
-    public ControlButtonJeu(FenetreJeu f, Plateau p){
+    public ControlButtonJeu(f,p){
         this.p=p;
         this.f=f;
         //this.f.setControlButton(this);
