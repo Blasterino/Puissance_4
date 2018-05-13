@@ -7,7 +7,21 @@ public class FenetreJeu extends JFrame {
     JPanel[][] grille;
     JButton bSauterLigne;
 
-    public FenetreJeu(){
+    public FenetreJeu(Plateau p){
+        this.plateau=p;
+        initAttribut();
+        ajouterWidget();
+        pack();
+        setTitle("Le Jeu");
+        setVisible(true);
+    }
+
+    public void initAttribut(){
+        JPanel pFenetre = new JPanel();
+        setContentPane(pFenetre);
+    }
+
+    public void ajouterWidget(){
 
     }
 }

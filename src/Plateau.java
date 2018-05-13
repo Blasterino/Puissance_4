@@ -147,7 +147,6 @@ public class Plateau {
                 }
             }
         }
-    }
 
     //Teste si des cases sont encore disponibles
     private boolean isGameOver() {
@@ -199,11 +198,13 @@ public class Plateau {
         return false;
     }
 
+    /*
     public void jouer() {
         while (!this.isGameOver()) {
             this.mettrePion();
         }
     }
+    */
 
     public String getCOULEUR_UNE() {
         return COULEUR_UNE;
