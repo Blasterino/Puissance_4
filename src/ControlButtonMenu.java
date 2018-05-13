@@ -15,7 +15,17 @@ public class ControlButtonMenu implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource()== fenetreMenu.lancerPartie){
+
+            int nbLigne = Integer.parseInt(fenetreMenu.tfLigne.getText());
+            int nbColonne = Integer.parseInt(fenetreMenu.tfColonne.getText());
+            int nbPuissance = Integer.parseInt(fenetreMenu.tfPuissance.getText());
+
+            p.setLigne(nbLigne);
+            p.setColonne(nbColonne);
+            p.setPuissancePlateau(nbPuissance);
+
             fenetreMenu.dispose();
+            ControlGroupJeu cbj = new ControlGroupJeu(p);
         }
     }
 }

@@ -7,6 +7,7 @@ public class FenetreJeu extends JFrame {
     JPanel[][] grille;
     JButton[] listeColonnes;
     JButton bSauterLigne, bQuitter;
+
     public FenetreJeu(Plateau p){
         this.plateau = p;
         initAttribut();
