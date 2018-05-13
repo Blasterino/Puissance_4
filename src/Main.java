@@ -30,6 +30,6 @@ public class Main {
             plateau = new Plateau(lignes, colonnes, puiss);
         }
         ControlGroup cg = new ControlGroup(plateau);
-        plateau.jouer();
+        //plateau.jouer();
     }
 }

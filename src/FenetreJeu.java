@@ -41,4 +41,3 @@ public class FenetreJeu extends JFrame {
         bQuitter.addActionListener(cb);
     }
 }
-}
