@@ -2,7 +2,19 @@ import java.util.Scanner;
 
 public class Main {
 
+
+
     public static void main(String[] args) {
+
+        /*
+        javax.swing.SwingUtilities.invokeLater( new Runnable() {
+            public void run() {
+                Plateau p = new Plateau();
+                ControlGroup control = new ControlGroup(p);
+            }
+        });
+        */
+
         final Scanner input = new Scanner(System.in);
 
         Plateau plateau;
