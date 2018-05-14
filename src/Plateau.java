@@ -330,9 +330,7 @@ public class Plateau {
             i++;
         }
 
-        if (compteurCombo >= this.puissancePlateau) return true;
-
-        return false;
+        return compteurCombo >= this.puissancePlateau;
     }
 
     /*
