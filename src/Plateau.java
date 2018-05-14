@@ -1,3 +1,8 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Plateau {
@@ -6,11 +11,14 @@ public class Plateau {
     private final String COULEUR_UNE = "Uranus";
     private final String COULEUR_DEUX = "Saturne";
 
+    private int ligne,colonne;
     private char plateau[][];
     private int tour;
     private int puissancePlateau;
     private String couleurDebut;
     private String couleurDeuxieme;
+    private BufferedImage[] btab;
+    private ImageIcon[] itab;
 
     public Plateau() {}
 
@@ -18,6 +26,25 @@ public class Plateau {
         this.plateau = new char[6][7];
         this.tour = 1;
         this.puissancePlateau = puissancePlateau;
+
+        this.btab = new BufferedImage[3];
+        this.itab = new ImageIcon[3];
+        try{
+            btab[0] = ImageIO.read(new File("C:/Users/basti/OneDrive/Documents/GitHub/Puissance_4/src/img1.png"));
+            btab[1] = ImageIO.read(new File("C:/Users/basti/OneDrive/Documents/GitHub/Puissance_4/src/img2.png"));
+            btab[2] = ImageIO.read(new File("C:/Users/basti/OneDrive/Documents/GitHub/Puissance_4/src/img3.png"));
+
+            itab[0] = new ImageIcon(btab[0]);
+            itab[1] = new ImageIcon(btab[1]);
+            itab[2] = new ImageIcon(btab[2]);
+
+            itab[0] = new ImageIcon(itab[0].getImage().getScaledInstance(100,100,BufferedImage.SCALE_SMOOTH));
+            itab[1] = new ImageIcon(itab[1].getImage().getScaledInstance(100,100,BufferedImage.SCALE_SMOOTH));
+            itab[2] = new ImageIcon(itab[2].getImage().getScaledInstance(100,100,BufferedImage.SCALE_SMOOTH));
+        } catch(IOException ioe) {
+            System.out.println("Chargement image impossible");
+        }
+
         this.definirOrdreDeJeu();
         this.initPlateau();
     }
@@ -47,7 +74,7 @@ public class Plateau {
                 this.plateau[i][j] = 'o';
             }
         }
-        this.contenuPlateau();
+        //this.contenuPlateau();
         if (this.couleurDebut.equals("couleur1")) {
             System.out.println("Tour " + this.tour);
             System.out.println("Le joueur avec les pions de couleur " + this.couleurDeuxieme + " commence");
@@ -114,7 +141,7 @@ public class Plateau {
                         if (this.tour % 2 != 0) {
                             this.plateau[i][col] = this.couleurDebut.charAt(0);
                         }
-                        this.contenuPlateau();
+                        //this.contenuPlateau();
 
                         //insérer ici le test de combinaison, en plus du test de cases libres
                         if (this.isCombination(col, indice)) {
@@ -253,6 +280,38 @@ public class Plateau {
 
     public void setCouleurDeuxieme(String couleurDeuxieme) {
         this.couleurDeuxieme = couleurDeuxieme;
+    }
+
+    public int getLigne() {
+        return ligne;
+    }
+
+    public void setLigne(int ligne) {
+        this.ligne = ligne;
+    }
+
+    public int getColonne() {
+        return colonne;
+    }
+
+    public void setColonne(int colonne) {
+        this.colonne = colonne;
+    }
+
+    public BufferedImage[] getBtab() {
+        return btab;
+    }
+
+    public void setBtab(BufferedImage[] btab) {
+        this.btab = btab;
+    }
+
+    public ImageIcon[] getItab() {
+        return itab;
+    }
+
+    public void setItab(ImageIcon[] itab) {
+        this.itab = itab;
     }
 
     private double random() {

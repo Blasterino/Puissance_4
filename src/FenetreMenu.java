@@ -19,8 +19,8 @@ public class FenetreMenu extends JFrame {
 
     public void initAttribut(){
 
-        tfLigne = new JTextField(""+p.getLigne(),10);
-        tfColonne = new JTextField(""+p.getColonne(),10);
+        //tfLigne = new JTextField(""+p.getLigne(),10);
+        //tfColonne = new JTextField(""+p.getColonne(),10);
         tfPuissance = new JTextField(""+p.getPuissancePlateau(),10);
         lancerPartie = new JButton("JOUER");
         quitter = new JButton("QUITTER");
@@ -33,17 +33,17 @@ public class FenetreMenu extends JFrame {
 
         JPanel pLigne = new JPanel();
         pLigne.add(new JLabel("Nombre de lignes"));
-        pLigne.add(tfLigne);
+       // pLigne.add(tfLigne);
         pFenetre.add(pLigne);
 
         JPanel pColonne = new JPanel();
         pColonne.add(new JLabel("Nombre de colonnes"));
-        pColonne.add(tfLigne);
+        //pColonne.add(tfLigne);
         pFenetre.add(pColonne);
 
         JPanel pPuissance = new JPanel();
         pPuissance.add(new JLabel("Niveau de la puissance"));
-        pPuissance.add(tfLigne);
+        //pPuissance.add(tfLigne);
         pFenetre.add(pPuissance);
 
         JPanel pLancer = new JPanel();

@@ -20,7 +20,7 @@ public class ControlButtonJeu implements ActionListener {
         for (int i=0; i<f.listeColonnes.length; i++){
             if(e.getSource()==f.listeColonnes[i]){
                 p.mettrePion(i);
-                //f.updateGrille()
+                f.updateGrille();
             }
         }
 
