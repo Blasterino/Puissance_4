@@ -186,7 +186,12 @@ public class Plateau {
         return true;
     }
 
-    //En cours
+    /**
+     * Vérification de la présence d'une combinaison gagnante incluant le jeton donné en paramètre
+     * @param col Colonne du jeton à vérifier
+     * @param ligne Ligne du jeton à vérifier
+     * @return Boolean vrai ou faux selon la présence d'une combinaison gagnante ou non
+     */
     private boolean isCombination(int col, int ligne) {
         int compteurCombo = 0;
 
@@ -194,7 +199,7 @@ public class Plateau {
         int i = 0;
         boolean estLineaire = true;
         while (i < this.puissancePlateau && estLineaire) {
-            if (col+i  >= this.plateau[0].length)
+            if (col + i  >= this.plateau[0].length)
                 estLineaire = false;
             else {
                 if (this.plateau[ligne][col] == this.plateau[ligne][col + i]) {
@@ -209,10 +214,114 @@ public class Plateau {
         i = 1;
         estLineaire = true;
         while (i < this.puissancePlateau && estLineaire && compteurCombo < this.puissancePlateau) {
-            if (col-i  < 0)
+            if (col - i  < 0)
                 estLineaire = false;
             else {
                 if (this.plateau[ligne][col] == this.plateau[ligne][col-i]) {
+                    compteurCombo ++;
+                }
+                else
+                    estLineaire = false;
+            }
+            i++;
+        }
+        if (compteurCombo >= this.puissancePlateau) return true;
+
+        compteurCombo = 0;
+
+        //Colonne basse
+        i = 0;
+        estLineaire = true;
+        while (i < this.puissancePlateau && estLineaire) {
+            if (ligne + i  >= this.plateau.length)
+                estLineaire = false;
+            else {
+                if (this.plateau[ligne][col] == this.plateau[ligne + i][col]) {
+                    compteurCombo++;
+                } else
+                    estLineaire = false;
+            }
+            i++;
+        }
+
+        //Colonne haute
+        i = 1;
+        estLineaire = true;
+        while (i < this.puissancePlateau && estLineaire && compteurCombo < this.puissancePlateau) {
+            if (ligne - i  < 0)
+                estLineaire = false;
+            else {
+                if (this.plateau[ligne][col] == this.plateau[ligne - i][col]) {
+                    compteurCombo ++;
+                }
+                else
+                    estLineaire = false;
+            }
+            i++;
+        }
+
+        if (compteurCombo >= this.puissancePlateau) return true;
+
+        compteurCombo = 0;
+
+        //Diagonale droite haute
+        i = 0;
+        estLineaire = true;
+        while (i < this.puissancePlateau && estLineaire) {
+            if (ligne - i  < 0 || col + i  >= this.plateau[0].length)
+                estLineaire = false;
+            else {
+                if (this.plateau[ligne][col] == this.plateau[ligne - i][col + i]) {
+                    compteurCombo++;
+                } else
+                    estLineaire = false;
+            }
+            i++;
+        }
+
+        //Diagonale gauche basse
+        i = 1;
+        estLineaire = true;
+        while (i < this.puissancePlateau && estLineaire && compteurCombo < this.puissancePlateau) {
+            if (ligne + i  >= this.plateau.length || col - i < 0)
+                estLineaire = false;
+            else {
+                if (this.plateau[ligne][col] == this.plateau[ligne + i][col - i]) {
+                    compteurCombo ++;
+                }
+                else
+                    estLineaire = false;
+            }
+            i++;
+        }
+
+        if (compteurCombo >= this.puissancePlateau) return true;
+
+        compteurCombo = 0;
+
+        //Diagonale gauche haute
+        i = 0;
+        estLineaire = true;
+        while (i < this.puissancePlateau && estLineaire) {
+            if (ligne - i  < 0 || col - i  < 0)
+                estLineaire = false;
+            else {
+                if (this.plateau[ligne][col] == this.plateau[ligne - i][col - i]) {
+                    compteurCombo++;
+                } else
+                    estLineaire = false;
+            }
+            i++;
+        }
+
+        //Diagonale droite basse
+        i = 1;
+        estLineaire = true;
+        while (i < this.puissancePlateau && estLineaire && compteurCombo < this.puissancePlateau) {
+            if (ligne + i  >= this.plateau.length || col + i  >= this.plateau[0].length)
+                estLineaire = false;
+            else {
+                if (this.plateau[ligne][col] == this.plateau[ligne + i][col + i]) {
                     compteurCombo ++;
                 }
                 else
