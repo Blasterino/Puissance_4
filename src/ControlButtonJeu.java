@@ -36,7 +36,7 @@ public class ControlButtonJeu implements ActionListener {
 
         if(e.getSource()==f.bQuitter){
             f.dispose();
-            ControlGroup cg = new ControlGroup(p);
+            ControlGroup cg = new ControlGroup();
         }
     }
 }

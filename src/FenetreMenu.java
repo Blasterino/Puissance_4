@@ -2,26 +2,25 @@ import javax.swing.*;
 
 public class FenetreMenu extends JFrame {
 
-    Plateau p;
     JButton lancerPartie;
     JButton quitter;
     JTextField tfLigne,tfColonne,tfPuissance;
     ImageIcon fondEcranTropBeau;
 
 
-    public FenetreMenu(Plateau p){
-        this.p = p;
+    public FenetreMenu(){
         initAttribut();
         creerVue();
         pack();
         setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void initAttribut(){
 
-        //tfLigne = new JTextField(""+p.getLigne(),10);
-        //tfColonne = new JTextField(""+p.getColonne(),10);
-        tfPuissance = new JTextField(""+p.getPuissancePlateau(),10);
+        tfLigne = new JTextField("",10);
+        tfColonne = new JTextField("",10);
+        tfPuissance = new JTextField("",10);
         lancerPartie = new JButton("JOUER");
         quitter = new JButton("QUITTER");
     }
@@ -33,17 +32,17 @@ public class FenetreMenu extends JFrame {
 
         JPanel pLigne = new JPanel();
         pLigne.add(new JLabel("Nombre de lignes"));
-       // pLigne.add(tfLigne);
+        pLigne.add(tfLigne);
         pFenetre.add(pLigne);
 
         JPanel pColonne = new JPanel();
         pColonne.add(new JLabel("Nombre de colonnes"));
-        //pColonne.add(tfLigne);
+        pColonne.add(tfColonne);
         pFenetre.add(pColonne);
 
         JPanel pPuissance = new JPanel();
         pPuissance.add(new JLabel("Niveau de la puissance"));
-        //pPuissance.add(tfLigne);
+        pPuissance.add(tfPuissance);
         pFenetre.add(pPuissance);
 
         JPanel pLancer = new JPanel();

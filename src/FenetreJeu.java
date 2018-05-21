@@ -31,8 +31,9 @@ public class FenetreJeu extends JFrame {
 
         //création des labels
         grille = new JLabel[plateau.getLigne()][plateau.getColonne()];
-        for(int i = 0; i<plateau.getColonne();i++){
-            for (int j =0; j<plateau.getLigne();j++){
+        System.out.println(plateau.getLigne());
+        for(int i = 0; i<plateau.getLigne();i++){
+            for (int j =0; j<plateau.getColonne();j++){
                 grille[i][j] = new JLabel();
                 grille[i][j].setPreferredSize(new Dimension(100-plateau.getColonne()*2,100-plateau.getLigne()*2));
             }
@@ -87,8 +88,8 @@ public class FenetreJeu extends JFrame {
     public void updateGrille(){
         //System.out.println(plateau.getColonne());
         //System.out.println(plateau.getLigne());
-        for(int i = 0; i<plateau.getColonne();i++){
-            for (int j =0; j<plateau.getLigne();j++){
+        for(int i = 0; i<plateau.getLigne();i++){
+            for (int j =0; j<plateau.getColonne();j++){
                 if (plateau.getPlateau()[i][j]=='o'){
                     //grille[i][j].setText("0");
                     grille[i][j].setIcon(plateau.getItab()[0]);

@@ -5,33 +5,42 @@ import java.awt.event.ActionListener;
 public class ControlButtonMenu implements ActionListener {
 
     FenetreMenu fenetreMenu;
-    Plateau p;
 
-    public ControlButtonMenu(FenetreMenu f, Plateau p){
+    public ControlButtonMenu(FenetreMenu f){
         this.fenetreMenu = f;
-        this.p = p;
         this.fenetreMenu.setControlButton(this);
     }
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource()== fenetreMenu.lancerPartie){
-
+            int nbLigne,nbColonne,nbPuissance;
+            boolean test = true;
             //ils sont en coms pour que je puisse tester l'affichage du jeu
-            //int nbLigne = Integer.parseInt(fenetreMenu.tfLigne.getText());
-            //int nbColonne = Integer.parseInt(fenetreMenu.tfColonne.getText());
-            //int nbPuissance = Integer.parseInt(fenetreMenu.tfPuissance.getText());
+            try{
+                nbLigne = Integer.parseInt(fenetreMenu.tfLigne.getText());
+                nbColonne = Integer.parseInt(fenetreMenu.tfColonne.getText());
+                nbPuissance = Integer.parseInt(fenetreMenu.tfPuissance.getText());
+            } catch(NumberFormatException nfe){
+                test = false;
+            }
 
+            if(test){
+                nbLigne = Integer.parseInt(fenetreMenu.tfLigne.getText());
+                nbColonne = Integer.parseInt(fenetreMenu.tfColonne.getText());
+                nbPuissance = Integer.parseInt(fenetreMenu.tfPuissance.getText());
+            } else {
+                nbLigne = 6;
+                nbColonne = 7;
+                nbPuissance = 4;
+            }
 
-            int nbLigne = 10;
-            int nbColonne = 10;
-            int nbPuissance = 5;
-
-            p.setLigne(nbLigne);
-            p.setColonne(nbColonne);
-            p.setPuissancePlateau(nbPuissance);
-
+            Plateau p = new Plateau(nbLigne,nbColonne,nbPuissance);
             fenetreMenu.dispose();
             ControlGroupJeu cbj = new ControlGroupJeu(p);
+        }
+
+        if(e.getSource()==fenetreMenu.quitter){
+            fenetreMenu.dispose();
         }
     }
 }

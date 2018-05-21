@@ -5,11 +5,10 @@ public class ControlGroup {
     ControlButtonMenu controlb;
 
 
-    public ControlGroup(Plateau p){
+    public ControlGroup(){
 
-        this.plateau = p;
-        this.fenetreMenu = new FenetreMenu(this.plateau);
-        this.controlb = new ControlButtonMenu(this.fenetreMenu,plateau);
+        this.fenetreMenu = new FenetreMenu();
+        this.controlb = new ControlButtonMenu(this.fenetreMenu);
 
     }
 

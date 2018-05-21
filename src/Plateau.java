@@ -20,12 +20,11 @@ public class Plateau {
     private BufferedImage[] btab;
     private ImageIcon[] itab;
 
-    public Plateau() {}
 
-    public Plateau(int puissancePlateau) {
+    public Plateau() {
         this.plateau = new char[6][7];
         this.tour = 1;
-        this.puissancePlateau = puissancePlateau;
+        this.puissancePlateau = 4;
 
         this.btab = new BufferedImage[3];
         this.itab = new ImageIcon[3];
@@ -53,6 +52,8 @@ public class Plateau {
         this.plateau = new char[ligne][col];
         this.tour = 1;
         this.puissancePlateau = puissancePlateau;
+        this.colonne=col;
+        this.ligne=ligne;
 
         this.btab = new BufferedImage[3];
         this.itab = new ImageIcon[3];
