@@ -21,9 +21,10 @@ public class ControlButtonMenu implements ActionListener {
             //int nbColonne = Integer.parseInt(fenetreMenu.tfColonne.getText());
             //int nbPuissance = Integer.parseInt(fenetreMenu.tfPuissance.getText());
 
-            int nbLigne = 6;
-            int nbColonne = 6;
-            int nbPuissance = 4;
+
+            int nbLigne = 10;
+            int nbColonne = 10;
+            int nbPuissance = 5;
 
             p.setLigne(nbLigne);
             p.setColonne(nbColonne);

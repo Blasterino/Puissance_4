@@ -32,11 +32,11 @@ public class ControlButtonJeu implements ActionListener {
             //p.sauterLigne();
             //ff.updateGrille();
         }
+        */
 
         if(e.getSource()==f.bQuitter){
             f.dispose();
             ControlGroup cg = new ControlGroup(p);
         }
-        */
     }
 }

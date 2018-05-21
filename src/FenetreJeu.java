@@ -6,6 +6,7 @@ public class FenetreJeu extends JFrame {
 
     Plateau plateau;
     JLabel[][] grille;
+    JLabel lTour, lJoueur;
     JButton[] listeColonnes;
     JButton bSauterLigne, bQuitter;
 
@@ -33,16 +34,25 @@ public class FenetreJeu extends JFrame {
         for(int i = 0; i<plateau.getColonne();i++){
             for (int j =0; j<plateau.getLigne();j++){
                 grille[i][j] = new JLabel();
-                grille[i][j].setPreferredSize(new Dimension(100,100));
+                grille[i][j].setPreferredSize(new Dimension(100-plateau.getColonne()*2,100-plateau.getLigne()*2));
             }
         }
 
         //création des autres boutons
         bSauterLigne = new JButton("Activer la puissance 4");
         bQuitter = new JButton("Quitter");
+
+        lTour = new JLabel("Tour : 0");
+        lJoueur = new JLabel("Au tour de : "+plateau.getCouleurDebut());
     }
 
     public void creerVue(){
+
+        //panel tout en haut
+        JPanel panelPlusHaut = new JPanel(new FlowLayout(FlowLayout.CENTER,100, 0));
+        //panelPlusHaut.setLayout(new BoxLayout(panelPlusHaut,BoxLayout.X_AXIS));
+        panelPlusHaut.add(lTour);
+        panelPlusHaut.add(lJoueur);
 
         //panel du haut
         JPanel panelHaut = new JPanel();
@@ -66,6 +76,7 @@ public class FenetreJeu extends JFrame {
         //ajout
         JPanel container = new JPanel();
         container.setLayout(new BoxLayout(container,BoxLayout.Y_AXIS));
+        container.add(panelPlusHaut);
         container.add(panelHaut);
         container.add(panelColonnes);
         container.add(panelGrille);
@@ -74,6 +85,8 @@ public class FenetreJeu extends JFrame {
     }
 
     public void updateGrille(){
+        //System.out.println(plateau.getColonne());
+        //System.out.println(plateau.getLigne());
         for(int i = 0; i<plateau.getColonne();i++){
             for (int j =0; j<plateau.getLigne();j++){
                 if (plateau.getPlateau()[i][j]=='o'){
@@ -89,6 +102,15 @@ public class FenetreJeu extends JFrame {
 
             }
         }
+
+        if(plateau.getTour()%2==1){
+            lJoueur.setText("Au tour de : "+plateau.getCouleurDebut());
+        } else {
+            lJoueur.setText("Au tour de : "+plateau.getCouleurDeuxieme());
+        }
+
+        lTour.setText("Tour : "+plateau.getTour());
+
     }
 
     public void setControlButton(ControlButtonJeu cb){

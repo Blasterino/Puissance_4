@@ -22,7 +22,7 @@ public class Main {
         String rep = input.next();
 
         while (!rep.equals("Default") && !rep.equals("Custom")) {
-            System.out.println("Entrez \"Defalut\" ou \"Custom\" pour lancer un type de partie");
+            System.out.println("Entrez \"Default\" ou \"Custom\" pour lancer un type de partie");
             rep = input.next();
         }
         if (rep.equals("Default")) {

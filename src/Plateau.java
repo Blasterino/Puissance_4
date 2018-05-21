@@ -42,7 +42,7 @@ public class Plateau {
             itab[1] = new ImageIcon(itab[1].getImage().getScaledInstance(100,100,BufferedImage.SCALE_SMOOTH));
             itab[2] = new ImageIcon(itab[2].getImage().getScaledInstance(100,100,BufferedImage.SCALE_SMOOTH));
         } catch(IOException ioe) {
-            System.out.println("Chargement image impossible");
+            ioe.getCause();
         }
 
         this.definirOrdreDeJeu();
@@ -53,6 +53,25 @@ public class Plateau {
         this.plateau = new char[ligne][col];
         this.tour = 1;
         this.puissancePlateau = puissancePlateau;
+
+        this.btab = new BufferedImage[3];
+        this.itab = new ImageIcon[3];
+        try{
+            btab[0] = ImageIO.read(new File("C:/Users/basti/OneDrive/Documents/GitHub/Puissance_4/src/img1.png"));
+            btab[1] = ImageIO.read(new File("C:/Users/basti/OneDrive/Documents/GitHub/Puissance_4/src/img2.png"));
+            btab[2] = ImageIO.read(new File("C:/Users/basti/OneDrive/Documents/GitHub/Puissance_4/src/img3.png"));
+
+            itab[0] = new ImageIcon(btab[0]);
+            itab[1] = new ImageIcon(btab[1]);
+            itab[2] = new ImageIcon(btab[2]);
+
+            itab[0] = new ImageIcon(itab[0].getImage().getScaledInstance(100-colonne*3,100-ligne*3,BufferedImage.SCALE_SMOOTH));
+            itab[1] = new ImageIcon(itab[1].getImage().getScaledInstance(100-colonne*3,100-ligne*3,BufferedImage.SCALE_SMOOTH));
+            itab[2] = new ImageIcon(itab[2].getImage().getScaledInstance(100-colonne*3,100-ligne*3,BufferedImage.SCALE_SMOOTH));
+        } catch(IOException ioe) {
+            ioe.getCause();
+        }
+
         this.definirOrdreDeJeu();
         this.initPlateau();
     }
@@ -75,6 +94,7 @@ public class Plateau {
             }
         }
         //this.contenuPlateau();
+        /*
         if (this.couleurDebut.equals("couleur1")) {
             System.out.println("Tour " + this.tour);
             System.out.println("Le joueur avec les pions de couleur " + this.couleurDeuxieme + " commence");
@@ -83,6 +103,7 @@ public class Plateau {
             System.out.println("Tour : " + this.tour);
             System.out.println("Le joueur avec les pions de couleur " + this.couleurDebut + " commence");
         }
+        */
     }
 
     private void contenuPlateau() {
@@ -155,7 +176,7 @@ public class Plateau {
                             }
                         }
 
-
+                        /*
                         if (!this.isGameOver()) {
                             if (this.tour % 2 == 0) {
                                 System.out.println("Tour " + this.tour);
@@ -168,6 +189,7 @@ public class Plateau {
                         else {
                             System.out.println("Plus aucune case n'est libre, fin de la partie.");
                         }
+                        */
                         this.tour++;
                         break;
                     }
