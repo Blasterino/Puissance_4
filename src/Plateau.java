@@ -356,6 +356,18 @@ public class Plateau {
         return compteurCombo >= this.puissancePlateau;
     }
 
+    /**
+     * Méthode permettant de supprimer la dernière ligne du plateau
+     */
+    public void supprimerDerniereLigne() {
+        for (int colonne = 0; colonne < plateau[0].length; colonne++) {
+            for (int ligne = plateau.length - 1; ligne > 0; ligne--) {
+                plateau[ligne][colonne] = plateau[ligne - 1][colonne];
+            }
+            plateau[0][colonne] = 'o';
+        }
+    }
+
     /*
     public void jouer() {
         while (!this.isGameOver()) {
