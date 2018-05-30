@@ -29,9 +29,9 @@ public class Plateau {
         this.btab = new BufferedImage[3];
         this.itab = new ImageIcon[3];
         try{
-            btab[0] = ImageIO.read(new File("C:/Users/basti/OneDrive/Documents/GitHub/Puissance_4/src/img1.png"));
-            btab[1] = ImageIO.read(new File("C:/Users/basti/OneDrive/Documents/GitHub/Puissance_4/src/img2.png"));
-            btab[2] = ImageIO.read(new File("C:/Users/basti/OneDrive/Documents/GitHub/Puissance_4/src/img3.png"));
+            btab[0] = ImageIO.read(new File("media/img1.png"));
+            btab[1] = ImageIO.read(new File("media/img2.png"));
+            btab[2] = ImageIO.read(new File("media/img3.png"));
 
             itab[0] = new ImageIcon(btab[0]);
             itab[1] = new ImageIcon(btab[1]);
@@ -41,7 +41,7 @@ public class Plateau {
             itab[1] = new ImageIcon(itab[1].getImage().getScaledInstance(100,100,BufferedImage.SCALE_SMOOTH));
             itab[2] = new ImageIcon(itab[2].getImage().getScaledInstance(100,100,BufferedImage.SCALE_SMOOTH));
         } catch(IOException ioe) {
-            ioe.getCause();
+            ioe.printStackTrace();
         }
 
         this.definirOrdreDeJeu();

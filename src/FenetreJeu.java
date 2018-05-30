@@ -1,5 +1,10 @@
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FenetreJeu extends JFrame {
 
@@ -9,6 +14,7 @@ public class FenetreJeu extends JFrame {
     JLabel lTour, lJoueur;
     JButton[] listeColonnes;
     JButton bSauterLigne, bQuitter;
+    Timer timer;
 
 
     public FenetreJeu(Plateau p){
@@ -45,6 +51,7 @@ public class FenetreJeu extends JFrame {
 
         lTour = new JLabel("Tour : 0");
         lJoueur = new JLabel("Au tour de : "+plateau.getCouleurDebut());
+        initTimer();
     }
 
     public void creerVue(){
@@ -112,6 +119,32 @@ public class FenetreJeu extends JFrame {
 
         lTour.setText("Tour : "+plateau.getTour());
 
+    }
+
+    public void initTimer(){
+        timer = new Timer(60000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                playSound("musique.wav");
+            }
+        });
+        timer.start();
+    }
+
+    public static synchronized void playSound(final String url) {
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    Clip clip = AudioSystem.getClip();
+                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+                            Main.class.getResourceAsStream("media/" + url));
+                    clip.open(inputStream);
+                    clip.start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     public void setControlButton(ControlButtonJeu cb){

@@ -1,4 +1,8 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class FenetreMenu extends JFrame {
 
@@ -26,7 +30,23 @@ public class FenetreMenu extends JFrame {
     }
 
     public void creerVue(){
+        BufferedImage buff;
+        ImageIcon icon;
+        JLabel label;
         JPanel pCadre = new JPanel();
+        pCadre.setLayout(new BoxLayout(pCadre, BoxLayout.Y_AXIS));
+        JPanel pImage = new JPanel();
+        try {
+            buff = ImageIO.read(new File("media/fond.png"));
+            icon = new ImageIcon(buff);
+            label = new JLabel();
+            label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900,500,BufferedImage.SCALE_SMOOTH)));
+            pImage.add(label);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
 
         JPanel pFenetre = new JPanel();
 
@@ -53,9 +73,10 @@ public class FenetreMenu extends JFrame {
         pLancer.add(quitter);
         pFenetre.add(pQuitter);
 
+        pCadre.add(pImage);
         pCadre.add(pFenetre);
 
-        setContentPane(pFenetre);
+        setContentPane(pCadre);
     }
 
     public void setControlButton(ControlButtonMenu cb){
