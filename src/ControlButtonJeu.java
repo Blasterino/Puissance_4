@@ -38,5 +38,11 @@ public class ControlButtonJeu implements ActionListener {
             f.dispose();
             ControlGroup cg = new ControlGroup();
         }
+
+        if(e.getSource()==f.bSauterLigne){
+            p.supprimerDerniereLigne();
+            p.setTour(p.getTour()+1);
+            f.updateGrille();
+        }
     }
 }

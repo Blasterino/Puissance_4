@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class Plateau {
     static final Scanner input = new Scanner(System.in);
 
-    private final String COULEUR_UNE = "Uranus";
-    private final String COULEUR_DEUX = "Saturne";
+    private final String COULEUR_UNE = "Terre";
+    private final String COULEUR_DEUX = "Jupiter";
 
     private int ligne,colonne;
     private char plateau[][];
@@ -21,32 +21,7 @@ public class Plateau {
     private ImageIcon[] itab;
 
 
-    public Plateau() {
-        this.plateau = new char[6][7];
-        this.tour = 1;
-        this.puissancePlateau = 4;
-
-        this.btab = new BufferedImage[3];
-        this.itab = new ImageIcon[3];
-        try{
-            btab[0] = ImageIO.read(new File("media/img1.png"));
-            btab[1] = ImageIO.read(new File("media/img2.png"));
-            btab[2] = ImageIO.read(new File("media/img3.png"));
-
-            itab[0] = new ImageIcon(btab[0]);
-            itab[1] = new ImageIcon(btab[1]);
-            itab[2] = new ImageIcon(btab[2]);
-
-            itab[0] = new ImageIcon(itab[0].getImage().getScaledInstance(100,100,BufferedImage.SCALE_SMOOTH));
-            itab[1] = new ImageIcon(itab[1].getImage().getScaledInstance(100,100,BufferedImage.SCALE_SMOOTH));
-            itab[2] = new ImageIcon(itab[2].getImage().getScaledInstance(100,100,BufferedImage.SCALE_SMOOTH));
-        } catch(IOException ioe) {
-            ioe.printStackTrace();
-        }
-
-        this.definirOrdreDeJeu();
-        this.initPlateau();
-    }
+    public Plateau(){}
 
     public Plateau(int ligne, int col, int puissancePlateau) {
         this.plateau = new char[ligne][col];
@@ -55,20 +30,37 @@ public class Plateau {
         this.colonne=col;
         this.ligne=ligne;
 
-        this.btab = new BufferedImage[3];
-        this.itab = new ImageIcon[3];
+        this.btab = new BufferedImage[18];
+        this.itab = new ImageIcon[18];
         try{
-            btab[0] = ImageIO.read(new File("C:/Users/basti/OneDrive/Documents/GitHub/Puissance_4/src/img1.png"));
-            btab[1] = ImageIO.read(new File("C:/Users/basti/OneDrive/Documents/GitHub/Puissance_4/src/img2.png"));
-            btab[2] = ImageIO.read(new File("C:/Users/basti/OneDrive/Documents/GitHub/Puissance_4/src/img3.png"));
 
-            itab[0] = new ImageIcon(btab[0]);
-            itab[1] = new ImageIcon(btab[1]);
-            itab[2] = new ImageIcon(btab[2]);
+            btab[0] = ImageIO.read(new File("media/blank.png"));
+            btab[1] = ImageIO.read(new File("media/Power_Blue.png"));
+            btab[2] = ImageIO.read(new File("media/PoweRed.png"));
 
-            itab[0] = new ImageIcon(itab[0].getImage().getScaledInstance(100-colonne*3,100-ligne*3,BufferedImage.SCALE_SMOOTH));
-            itab[1] = new ImageIcon(itab[1].getImage().getScaledInstance(100-colonne*3,100-ligne*3,BufferedImage.SCALE_SMOOTH));
-            itab[2] = new ImageIcon(itab[2].getImage().getScaledInstance(100-colonne*3,100-ligne*3,BufferedImage.SCALE_SMOOTH));
+            btab[3] = ImageIO.read(new File("media/1.png"));
+            btab[4] = ImageIO.read(new File("media/2.png"));
+            btab[5] = ImageIO.read(new File("media/3.png"));
+            btab[6] = ImageIO.read(new File("media/4.png"));
+            btab[7] = ImageIO.read(new File("media/5.png"));
+            btab[8] = ImageIO.read(new File("media/6.png"));
+            btab[9] = ImageIO.read(new File("media/7.png"));
+            btab[10] = ImageIO.read(new File("media/8.png"));
+            btab[11] = ImageIO.read(new File("media/9.png"));
+            btab[12] = ImageIO.read(new File("media/10.png"));
+            btab[13] = ImageIO.read(new File("media/11.png"));
+            btab[14] = ImageIO.read(new File("media/12.png"));
+            btab[15] = ImageIO.read(new File("media/13.png"));
+            btab[16] = ImageIO.read(new File("media/14.png"));
+            btab[17] = ImageIO.read(new File("media/15.png"));
+
+
+
+            for (int i=0; i<btab.length; i++){
+                itab[i] = new ImageIcon(btab[i]);
+                itab[i] = new ImageIcon(itab[i].getImage().getScaledInstance(100-colonne,100-ligne,BufferedImage.SCALE_SMOOTH));
+            }
+
         } catch(IOException ioe) {
             ioe.getCause();
         }

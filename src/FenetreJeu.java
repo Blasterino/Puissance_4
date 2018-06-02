@@ -24,6 +24,7 @@ public class FenetreJeu extends JFrame {
         creerVue();
         pack();
         setVisible(true);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -32,16 +33,19 @@ public class FenetreJeu extends JFrame {
         //création des boutons pour ajouter au niveau des colonnes
         listeColonnes = new JButton[plateau.getColonne()];
         for (int i=0; i<plateau.getColonne();i++){
-            listeColonnes[i] = new JButton(String.valueOf(i+1));
+            listeColonnes[i] = new JButton();
+            listeColonnes[i].setPreferredSize(new Dimension(100,100));
+            listeColonnes[i].setIcon(plateau.getItab()[i+3]);
         }
 
         //création des labels
         grille = new JLabel[plateau.getLigne()][plateau.getColonne()];
-        System.out.println(plateau.getLigne());
+        //System.out.println(plateau.getLigne());
         for(int i = 0; i<plateau.getLigne();i++){
             for (int j =0; j<plateau.getColonne();j++){
                 grille[i][j] = new JLabel();
                 grille[i][j].setPreferredSize(new Dimension(100-plateau.getColonne()*2,100-plateau.getLigne()*2));
+                grille[i][j].setOpaque(false);
             }
         }
 
@@ -50,7 +54,11 @@ public class FenetreJeu extends JFrame {
         bQuitter = new JButton("Quitter");
 
         lTour = new JLabel("Tour : 0");
+        lTour.setOpaque(false);
+        lTour.setForeground(Color.white);
         lJoueur = new JLabel("Au tour de : "+plateau.getCouleurDebut());
+        lJoueur.setOpaque(false);
+        lJoueur.setForeground(Color.white);
         initTimer();
     }
 
@@ -58,20 +66,24 @@ public class FenetreJeu extends JFrame {
 
         //panel tout en haut
         JPanel panelPlusHaut = new JPanel(new FlowLayout(FlowLayout.CENTER,100, 0));
+        panelPlusHaut.setOpaque(false);
         //panelPlusHaut.setLayout(new BoxLayout(panelPlusHaut,BoxLayout.X_AXIS));
         panelPlusHaut.add(lTour);
         panelPlusHaut.add(lJoueur);
 
         //panel du haut
         JPanel panelHaut = new JPanel();
+        panelHaut.setOpaque(false);
         panelHaut.add(bQuitter);
         //panel du milieu haut
         JPanel panelColonnes = new JPanel(new GridLayout(1,plateau.getPlateau().length));
+        panelColonnes.setOpaque(false);
         for (JButton butt : listeColonnes){
             panelColonnes.add(butt);
         }
         //panel du milieu bas
         JPanel panelGrille = new JPanel(new GridLayout(plateau.getPlateau().length,plateau.getPlateau()[0].length));
+        panelGrille.setOpaque(false);
         for (int i = 0; i < grille.length; i++){
             for(JLabel pan : grille[i]){
                 panelGrille.add(pan);
@@ -79,10 +91,12 @@ public class FenetreJeu extends JFrame {
         }
         //panel bas
         JPanel panelBas = new JPanel();
+        panelBas.setOpaque(false);
         panelBas.setLayout(new BoxLayout(panelBas,BoxLayout.X_AXIS));
         panelBas.add(bSauterLigne);
         //ajout
-        JPanel container = new JPanel();
+        JPanelFond container = new JPanelFond();
+
         container.setLayout(new BoxLayout(container,BoxLayout.Y_AXIS));
         container.add(panelPlusHaut);
         container.add(panelHaut);
@@ -100,10 +114,10 @@ public class FenetreJeu extends JFrame {
                 if (plateau.getPlateau()[i][j]=='o'){
                     //grille[i][j].setText("0");
                     grille[i][j].setIcon(plateau.getItab()[0]);
-                } else if (plateau.getPlateau()[i][j]=='S'){
+                } else if (plateau.getPlateau()[i][j]=='T'){
                     //grille[i][j].setText("S");
                     grille[i][j].setIcon(plateau.getItab()[1]);
-                } else if (plateau.getPlateau()[i][j]=='U'){
+                } else if (plateau.getPlateau()[i][j]=='J'){
                     //grille[i][j].setText("U");
                     grille[i][j].setIcon(plateau.getItab()[2]);
                 }

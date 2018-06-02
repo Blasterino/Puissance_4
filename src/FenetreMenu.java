@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +16,7 @@ public class FenetreMenu extends JFrame {
     public FenetreMenu(){
         initAttribut();
         creerVue();
-        pack();
+        setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -29,51 +30,54 @@ public class FenetreMenu extends JFrame {
         quitter = new JButton("QUITTER");
     }
 
+
+
     public void creerVue(){
-        BufferedImage buff;
-        ImageIcon icon;
-        JLabel label;
         JPanel pCadre = new JPanel();
         pCadre.setLayout(new BoxLayout(pCadre, BoxLayout.Y_AXIS));
-        JPanel pImage = new JPanel();
-        try {
-            buff = ImageIO.read(new File("media/fond.png"));
-            icon = new ImageIcon(buff);
-            label = new JLabel();
-            label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900,500,BufferedImage.SCALE_SMOOTH)));
-            pImage.add(label);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
+        JPanelFondMenu pFenetre = new JPanelFondMenu();
 
-
-        JPanel pFenetre = new JPanel();
+        JLabel lLigne = new JLabel("Nombre de lignes");
+        lLigne.setOpaque(false);
+        lLigne.setForeground(Color.white);
 
         JPanel pLigne = new JPanel();
-        pLigne.add(new JLabel("Nombre de lignes"));
+        pLigne.setOpaque(false);
+        pLigne.add(lLigne);
         pLigne.add(tfLigne);
         pFenetre.add(pLigne);
 
+        JLabel lColonne = new JLabel("Nombre de colonnes");
+        lColonne.setOpaque(false);
+        lColonne.setForeground(Color.white);
+
         JPanel pColonne = new JPanel();
-        pColonne.add(new JLabel("Nombre de colonnes"));
+        pColonne.setOpaque(false);
+        pColonne.add(lColonne);
         pColonne.add(tfColonne);
         pFenetre.add(pColonne);
 
+        JLabel lPuissance = new JLabel("Niveau de la puissance");
+        lPuissance.setForeground(Color.white);
+        lPuissance.setOpaque(false);
+
         JPanel pPuissance = new JPanel();
-        pPuissance.add(new JLabel("Niveau de la puissance"));
+        pPuissance.setOpaque(false);
+        pPuissance.add(lPuissance);
         pPuissance.add(tfPuissance);
         pFenetre.add(pPuissance);
 
         JPanel pLancer = new JPanel();
+        pLancer.setOpaque(false);
         pLancer.add(lancerPartie);
         pFenetre.add(pLancer);
 
         JPanel pQuitter = new JPanel();
+        pQuitter.setOpaque(false);
         pLancer.add(quitter);
         pFenetre.add(pQuitter);
 
-        pCadre.add(pImage);
         pCadre.add(pFenetre);
 
         setContentPane(pCadre);
