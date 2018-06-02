@@ -1,6 +1,5 @@
 public class ControlGroup {
 
-    Plateau plateau;
     FenetreMenu fenetreMenu;
     ControlButtonMenu controlb;
 
