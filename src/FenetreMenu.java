@@ -9,7 +9,7 @@ public class FenetreMenu extends JFrame {
 
     JButton lancerPartie;
     JButton quitter;
-    JTextField tfLigne,tfColonne,tfPuissance;
+    JComboBox cLigne,cColonne,cPuissance;
     ImageIcon fondEcranTropBeau;
 
 
@@ -23,9 +23,14 @@ public class FenetreMenu extends JFrame {
 
     public void initAttribut(){
 
-        tfLigne = new JTextField("",10);
-        tfColonne = new JTextField("",10);
-        tfPuissance = new JTextField("",10);
+        String[] tabLigne= new String[]{"6","7","8"};
+        String[] tabColonne= new String[]{"7","8","9","10","11","12","13","14","15"};
+        String[] tabPuissance= new String[]{"4","5","6"};
+
+        cLigne = new JComboBox(tabLigne);
+        cColonne = new JComboBox(tabColonne);
+        cPuissance = new JComboBox(tabPuissance);
+
         lancerPartie = new JButton("JOUER");
         quitter = new JButton("QUITTER");
     }
@@ -45,7 +50,7 @@ public class FenetreMenu extends JFrame {
         JPanel pLigne = new JPanel();
         pLigne.setOpaque(false);
         pLigne.add(lLigne);
-        pLigne.add(tfLigne);
+        pLigne.add(cLigne);
         pFenetre.add(pLigne);
 
         JLabel lColonne = new JLabel("Nombre de colonnes");
@@ -55,7 +60,7 @@ public class FenetreMenu extends JFrame {
         JPanel pColonne = new JPanel();
         pColonne.setOpaque(false);
         pColonne.add(lColonne);
-        pColonne.add(tfColonne);
+        pColonne.add(cColonne);
         pFenetre.add(pColonne);
 
         JLabel lPuissance = new JLabel("Niveau de la puissance");
@@ -65,7 +70,7 @@ public class FenetreMenu extends JFrame {
         JPanel pPuissance = new JPanel();
         pPuissance.setOpaque(false);
         pPuissance.add(lPuissance);
-        pPuissance.add(tfPuissance);
+        pPuissance.add(cPuissance);
         pFenetre.add(pPuissance);
 
         JPanel pLancer = new JPanel();

@@ -12,22 +12,23 @@ public class ControlButtonMenu implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e){
+
         if(e.getSource()== fenetreMenu.lancerPartie){
             int nbLigne,nbColonne,nbPuissance;
             boolean test = true;
             //ils sont en coms pour que je puisse tester l'affichage du jeu
             try{
-                nbLigne = Integer.parseInt(fenetreMenu.tfLigne.getText());
-                nbColonne = Integer.parseInt(fenetreMenu.tfColonne.getText());
-                nbPuissance = Integer.parseInt(fenetreMenu.tfPuissance.getText());
+                nbLigne = Integer.parseInt(fenetreMenu.cLigne.getSelectedItem().toString());
+                nbColonne = Integer.parseInt(fenetreMenu.cColonne.getSelectedItem().toString());
+                nbPuissance = Integer.parseInt(fenetreMenu.cPuissance.getSelectedItem().toString());
             } catch(NumberFormatException nfe){
                 test = false;
             }
 
             if(test){
-                nbLigne = Integer.parseInt(fenetreMenu.tfLigne.getText());
-                nbColonne = Integer.parseInt(fenetreMenu.tfColonne.getText());
-                nbPuissance = Integer.parseInt(fenetreMenu.tfPuissance.getText());
+                nbLigne = Integer.parseInt(fenetreMenu.cLigne.getSelectedItem().toString());
+                nbColonne = Integer.parseInt(fenetreMenu.cColonne.getSelectedItem().toString());
+                nbPuissance = Integer.parseInt(fenetreMenu.cPuissance.getSelectedItem().toString());
             } else {
                 nbLigne = 6;
                 nbColonne = 7;
