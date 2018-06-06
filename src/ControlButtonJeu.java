@@ -25,12 +25,8 @@ public class ControlButtonJeu implements ActionListener {
                 for (int j = 0; j < p.getPlateau().length; j++) {
                     if ((p.getPlateau()[j][i] == 'J') || (p.getPlateau()[j][i] == 'T')){
                         int indice = j;
-                        System.out.println(i);
-                        System.out.println(indice);
 
                         if (p.isCombination(i, indice)) {
-                            System.out.println(i);
-                            System.out.println(indice);
                             if (p.getTour() % 2 == 0) {
                                 f.gameOver(2);// Le joueur 2 a gagné
                                 fini = true;

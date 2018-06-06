@@ -150,7 +150,7 @@ public class FenetreJeu extends JFrame {
             clip.open(audioIn);
             FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             gainControl.setValue(-25.0f);
-            clip.loop(20);
+            clip.loop(200);
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {
