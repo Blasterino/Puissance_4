@@ -51,6 +51,7 @@ public class FenetreJeu extends JFrame {
 
         //création des autres boutons
         bSauterLigne = new JButton("Activer la puissance 4");
+        bSauterLigne.setEnabled(false);
         bQuitter = new JButton("Quitter");
 
         lTour = new JLabel("Tour : 0");
@@ -135,12 +136,12 @@ public class FenetreJeu extends JFrame {
 
         lTour.setText("Tour : "+plateau.getTour());
 
+        if (plateau.isPuissanceAvailable()) bSauterLigne.setEnabled(true);
+        else bSauterLigne.setEnabled(false);
     }
 
     public void setControlButton(ControlButtonJeu cb){
-        for (JButton butt : listeColonnes){
-            butt.addActionListener(cb);
-        }
+        for (JButton butt : listeColonnes) butt.addActionListener(cb);
         bSauterLigne.addActionListener(cb);
         bQuitter.addActionListener(cb);
     }

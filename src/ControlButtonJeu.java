@@ -61,6 +61,7 @@ public class ControlButtonJeu implements ActionListener {
 
         if(e.getSource()==f.bSauterLigne){
             p.supprimerDerniereLigne();
+            p.setCooldownPuissanceDefaut();
             p.setTour(p.getTour()+1);
             f.updateGrille();
         }

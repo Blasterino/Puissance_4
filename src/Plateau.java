@@ -10,10 +10,12 @@ public class Plateau {
 
     private final String COULEUR_UNE = "Terre";
     private final String COULEUR_DEUX = "Jupiter";
+    private final int COOLDOWN_PUISSANCE_DEFAUT = 7;
 
     private int ligne,colonne;
     private char plateau[][];
     private int tour;
+    private int cooldownPuissance;
     private int puissancePlateau;
     private String couleurDebut;
     private String couleurDeuxieme;
@@ -29,6 +31,7 @@ public class Plateau {
         this.puissancePlateau = puissancePlateau;
         this.colonne=col;
         this.ligne=ligne;
+        this.cooldownPuissance = COOLDOWN_PUISSANCE_DEFAUT;
 
         this.btab = new BufferedImage[18];
         this.itab = new ImageIcon[18];
@@ -185,6 +188,7 @@ public class Plateau {
                         break;
                     }
                 }
+                if (cooldownPuissance > 0) cooldownPuissance--;
             }
         }
 
@@ -342,7 +346,6 @@ public class Plateau {
             }
             i++;
         }
-
         return compteurCombo >= this.puissancePlateau;
     }
 
@@ -358,13 +361,20 @@ public class Plateau {
         }
     }
 
-    /*
-    public void jouer() {
-        while (!this.isGameOver()) {
-            this.mettrePion();
-        }
+    /**
+     * Méthode permettant de savoir si l'activation de la Puissance 4 est disponible
+     * @return boolean true si la Puissance 4 est disponible, false sinon
+     */
+    public boolean isPuissanceAvailable() {
+        return cooldownPuissance == 0;
     }
-    */
+
+    /**
+     * Méthode permettant de redéfinir le cooldown de la puissance à sa valeur originale une fois utilisée
+     */
+    public void setCooldownPuissanceDefaut() {
+        this.cooldownPuissance = COOLDOWN_PUISSANCE_DEFAUT;
+    }
 
     public String getCOULEUR_UNE() {
         return COULEUR_UNE;
