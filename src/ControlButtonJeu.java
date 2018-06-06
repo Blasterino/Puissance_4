@@ -14,6 +14,7 @@ public class ControlButtonJeu implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e){
+        boolean fini = false;//variable booleenne determinant si la partie doit être terminée
 
         //control des boutons pour ajouter un pion à une colonne
 
@@ -21,6 +22,28 @@ public class ControlButtonJeu implements ActionListener {
             if(e.getSource()==f.listeColonnes[i]){
                 p.mettrePion(i);
                 f.updateGrille();
+                for (int j = p.getPlateau().length-1; j >= 0; j--) {
+                    System.out.println(p.getPlateau()[j][i]);
+                    if ((p.getPlateau()[j][i] == 'J') || (p.getPlateau()[j][i] == 'T')){
+                        int indice = j;
+
+                        System.out.println(i);
+                        System.out.println(indice);
+                        if (p.isCombination(i, indice)) {
+                            if (p.getTour() % 2 == 0) {
+                                f.gameOver(2);// Le joueur 2 a gagné
+                                fini = true;
+                            }
+                            if (p.getTour() % 2 != 0) {
+                                f.gameOver(1);//le joueur 1 a gagné
+                                fini = true;
+
+                            }
+                        }
+                        break;
+                    }
+                }
+
             }
         }
 
@@ -43,6 +66,10 @@ public class ControlButtonJeu implements ActionListener {
             p.supprimerDerniereLigne();
             p.setTour(p.getTour()+1);
             f.updateGrille();
+        }
+        if(fini){
+            f.dispose();
+            ControlGroup cg = new ControlGroup();
         }
     }
 }

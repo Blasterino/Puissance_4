@@ -157,19 +157,17 @@ public class Plateau {
                         }
                         //this.contenuPlateau();
 
-                        //insérer ici le test de combinaison, en plus du test de cases libres
+                        /*insérer ici le test de combinaison, en plus du test de cases libres
+
                         if (this.isCombination(col, indice)) {
                             if (this.tour % 2 == 0) {
                                 System.out.println("Partie terminée, le joueur " + this.couleurDeuxieme + " a gagné.");
-                                System.exit(0);
                             }
                             if (this.tour % 2 != 0) {
                                 System.out.println("Partie terminée, le joueur " + this.couleurDebut + " a gagné.");
-                                System.exit(0);
                             }
                         }
 
-                        /*
                         if (!this.isGameOver()) {
                             if (this.tour % 2 == 0) {
                                 System.out.println("Tour " + this.tour);
@@ -207,7 +205,7 @@ public class Plateau {
      * @param ligne Ligne du jeton à vérifier
      * @return Boolean vrai ou faux selon la présence d'une combinaison gagnante ou non
      */
-    private boolean isCombination(int col, int ligne) {
+    public boolean isCombination(int col, int ligne) {
         int compteurCombo = 0;
 
         //Ligne droite

@@ -15,6 +15,7 @@ public class FenetreJeu extends JFrame {
     JButton[] listeColonnes;
     JButton bSauterLigne, bQuitter;
     Timer timer;
+    JOptionPane fenetreDialogue;
 
 
     public FenetreJeu(Plateau p){
@@ -60,6 +61,9 @@ public class FenetreJeu extends JFrame {
         lJoueur.setOpaque(false);
         lJoueur.setForeground(Color.white);
         initTimer();
+
+        //initialisation du JOptionPane
+        fenetreDialogue = new JOptionPane();
     }
 
     public void creerVue(){
@@ -139,7 +143,7 @@ public class FenetreJeu extends JFrame {
         timer = new Timer(60000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("musique.wav");
+                playSound("media/musique.wav");
             }
         });
         timer.start();
@@ -167,5 +171,22 @@ public class FenetreJeu extends JFrame {
         }
         bSauterLigne.addActionListener(cb);
         bQuitter.addActionListener(cb);
+    }
+
+    public void gameOver(int i){
+        String message = "";
+        JDialog fenErr;
+        switch(i){
+            case 1:
+                message += "Partie terminée !\n Le joueur " + plateau.getCouleurDeuxieme() + " a gagné.";
+                break;
+            case 2 :
+                message += "Partie terminée !\n Le joueur " + plateau.getCouleurDebut() + " a gagné.";
+                break;
+        }
+
+        fenetreDialogue.showMessageDialog( this, message, "Game Over",
+                JOptionPane.ERROR_MESSAGE );
+        fenErr = fenetreDialogue.createDialog(this, "Game Over");
     }
 }
