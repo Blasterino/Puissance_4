@@ -92,4 +92,6 @@ public class FenetreMenu extends JFrame {
         quitter.addActionListener(cb);
         lancerPartie.addActionListener(cb);
     }
+
+
 }

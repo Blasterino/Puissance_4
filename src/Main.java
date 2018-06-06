@@ -1,3 +1,6 @@
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -42,6 +45,23 @@ public class Main {
             plateau = new Plateau(lignes, colonnes, puiss);
         }
         */
+        //Lancement de la musique
+        try {
+            File fichierSon = new File("media/musique.wav");
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(fichierSon);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-25.0f);
+            clip.loop(200);
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
+
         ControlGroup cg = new ControlGroup();
         //plateau.jouer();
     }

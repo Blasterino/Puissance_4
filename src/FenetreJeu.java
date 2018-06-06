@@ -15,7 +15,6 @@ public class FenetreJeu extends JFrame {
     JButton bSauterLigne, bQuitter;
     Timer timer;
     JOptionPane fenetreDialogue;
-    Clip clip;
 
 
     public FenetreJeu(Plateau p){
@@ -60,9 +59,6 @@ public class FenetreJeu extends JFrame {
         lJoueur = new JLabel("Au tour de : "+plateau.getCouleurDebut());
         lJoueur.setOpaque(false);
         lJoueur.setForeground(Color.white);
-
-        //Initialisations concernant la musique
-        initMusique();
 
         //initialisation du JOptionPane
         fenetreDialogue = new JOptionPane();
@@ -140,27 +136,6 @@ public class FenetreJeu extends JFrame {
         lTour.setText("Tour : "+plateau.getTour());
 
     }
-
-    public void initMusique(){
-
-        try {
-            File fichierSon = new File("media/musique.wav");
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(fichierSon);
-            clip = AudioSystem.getClip();
-            clip.open(audioIn);
-            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(-25.0f);
-            clip.loop(200);
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 
     public void setControlButton(ControlButtonJeu cb){
         for (JButton butt : listeColonnes){

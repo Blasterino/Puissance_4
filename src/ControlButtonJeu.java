@@ -55,7 +55,6 @@ public class ControlButtonJeu implements ActionListener {
         */
 
         if(e.getSource()==f.bQuitter){
-            f.clip.stop();
             f.dispose();
             ControlGroup cg = new ControlGroup();
         }
@@ -66,7 +65,6 @@ public class ControlButtonJeu implements ActionListener {
             f.updateGrille();
         }
         if(fini){
-            f.clip.stop();
             f.dispose();
             ControlGroup cg = new ControlGroup();
         }
