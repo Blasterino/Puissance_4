@@ -24,6 +24,7 @@ public class FenetreJeu extends JFrame {
         creerVue();
         pack();
         setVisible(true);
+        setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

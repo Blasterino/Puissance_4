@@ -52,7 +52,7 @@ public class Main {
             Clip clip = AudioSystem.getClip();
             clip.open(audioIn);
             FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(-25.0f);
+            gainControl.setValue(-30.0f);
             clip.loop(200);
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();

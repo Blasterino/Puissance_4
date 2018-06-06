@@ -17,7 +17,11 @@ public class FenetreMenu extends JFrame {
         initAttribut();
         creerVue();
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds(0, 0, screenSize.width-100, screenSize.height-100);
         setVisible(true);
+        setResizable(false);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
