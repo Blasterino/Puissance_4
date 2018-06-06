@@ -22,14 +22,15 @@ public class ControlButtonJeu implements ActionListener {
             if(e.getSource()==f.listeColonnes[i]){
                 p.mettrePion(i);
                 f.updateGrille();
-                for (int j = p.getPlateau().length-1; j >= 0; j--) {
-                    System.out.println(p.getPlateau()[j][i]);
+                for (int j = 0; j < p.getPlateau().length; j++) {
                     if ((p.getPlateau()[j][i] == 'J') || (p.getPlateau()[j][i] == 'T')){
                         int indice = j;
-
                         System.out.println(i);
                         System.out.println(indice);
+
                         if (p.isCombination(i, indice)) {
+                            System.out.println(i);
+                            System.out.println(indice);
                             if (p.getTour() % 2 == 0) {
                                 f.gameOver(2);// Le joueur 2 a gagné
                                 fini = true;
@@ -58,6 +59,7 @@ public class ControlButtonJeu implements ActionListener {
         */
 
         if(e.getSource()==f.bQuitter){
+            f.clip.stop();
             f.dispose();
             ControlGroup cg = new ControlGroup();
         }
@@ -68,6 +70,7 @@ public class ControlButtonJeu implements ActionListener {
             f.updateGrille();
         }
         if(fini){
+            f.clip.stop();
             f.dispose();
             ControlGroup cg = new ControlGroup();
         }

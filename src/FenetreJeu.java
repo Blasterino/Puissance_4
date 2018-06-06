@@ -1,10 +1,9 @@
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 public class FenetreJeu extends JFrame {
 
@@ -16,6 +15,7 @@ public class FenetreJeu extends JFrame {
     JButton bSauterLigne, bQuitter;
     Timer timer;
     JOptionPane fenetreDialogue;
+    Clip clip;
 
 
     public FenetreJeu(Plateau p){
@@ -60,7 +60,9 @@ public class FenetreJeu extends JFrame {
         lJoueur = new JLabel("Au tour de : "+plateau.getCouleurDebut());
         lJoueur.setOpaque(false);
         lJoueur.setForeground(Color.white);
-        initTimer();
+
+        //Initialisations concernant la musique
+        initMusique();
 
         //initialisation du JOptionPane
         fenetreDialogue = new JOptionPane();
@@ -139,31 +141,26 @@ public class FenetreJeu extends JFrame {
 
     }
 
-    public void initTimer(){
-        timer = new Timer(60000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                playSound("media/musique.wav");
-            }
-        });
-        timer.start();
+    public void initMusique(){
+
+        try {
+            File fichierSon = new File("media/musique.wav");
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(fichierSon);
+            clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-25.0f);
+            clip.loop(20);
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static synchronized void playSound(final String url) {
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    Clip clip = AudioSystem.getClip();
-                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                            Main.class.getResourceAsStream("media/" + url));
-                    clip.open(inputStream);
-                    clip.start();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }
+
 
     public void setControlButton(ControlButtonJeu cb){
         for (JButton butt : listeColonnes){
