@@ -10,11 +10,11 @@ public class Plateau {
 
     private final String COULEUR_UNE = "Terre";
     private final String COULEUR_DEUX = "Jupiter";
-    private final int COOLDOWN_PUISSANCE_DEFAUT = 7;
 
     private int ligne,colonne;
     private char plateau[][];
     private int tour;
+    private int cooldownPuissanceDefaut;
     private int cooldownPuissance;
     private int puissancePlateau;
     private String couleurDebut;
@@ -31,7 +31,8 @@ public class Plateau {
         this.puissancePlateau = puissancePlateau;
         this.colonne=col;
         this.ligne=ligne;
-        this.cooldownPuissance = COOLDOWN_PUISSANCE_DEFAUT;
+        this.cooldownPuissanceDefaut = this.colonne * 2;
+        this.cooldownPuissance = this.cooldownPuissanceDefaut;
 
         this.btab = new BufferedImage[18];
         this.itab = new ImageIcon[18];
@@ -373,7 +374,7 @@ public class Plateau {
      * Méthode permettant de redéfinir le cooldown de la puissance à sa valeur originale une fois utilisée
      */
     public void setCooldownPuissanceDefaut() {
-        this.cooldownPuissance = COOLDOWN_PUISSANCE_DEFAUT;
+        this.cooldownPuissance = cooldownPuissanceDefaut;
     }
 
     public String getCOULEUR_UNE() {
