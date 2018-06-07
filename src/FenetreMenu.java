@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class FenetreMenu extends JFrame {
 
@@ -14,6 +15,7 @@ public class FenetreMenu extends JFrame {
 
 
     public FenetreMenu(){
+        //video();
         initAttribut();
         creerVue();
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -96,6 +98,22 @@ public class FenetreMenu extends JFrame {
         quitter.addActionListener(cb);
         lancerPartie.addActionListener(cb);
     }
+    /* Fonction lançant la vidéo (marche po)
+    public void video(){
+        try {
+            URL mediaURL = new File("media/intro.mov").toURI().toURL();
+            Player mediaPlayer = null;
+            mediaPlayer = Manager.createRealizedPlayer(mediaURL);
+            Component video = mediaPlayer.getVisualComponent();
+            add(video,BorderLayout.CENTER);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoPlayerException e) {
+            e.printStackTrace();
+        } catch (CannotRealizeException e) {
+            e.printStackTrace();
+        }
+    }*/
 
 
 }
