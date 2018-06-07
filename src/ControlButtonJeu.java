@@ -20,6 +20,7 @@ public class ControlButtonJeu implements ActionListener {
 
         for (int i=0; i<f.listeColonnes.length; i++){
             if(e.getSource()==f.listeColonnes[i]){
+                f.playBoom();
                 p.mettrePion(i);
                 f.updateGrille();
                 for (int j = 0; j < p.getPlateau().length; j++) {
@@ -60,6 +61,7 @@ public class ControlButtonJeu implements ActionListener {
         }
 
         if(e.getSource()==f.bSauterLigne){
+            f.playWow();
             p.supprimerDerniereLigne();
             p.setCooldownPuissanceDefaut();
             p.setTour(p.getTour()+1);

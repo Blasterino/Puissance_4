@@ -15,10 +15,12 @@ public class FenetreJeu extends JFrame {
     JButton bSauterLigne, bQuitter;
     Timer timer;
     JOptionPane fenetreDialogue;
+    Clip[] clipBoom,clipWow;
 
 
     public FenetreJeu(Plateau p){
         this.plateau = p;
+        initSons();
         initAttribut();
         updateGrille();
         creerVue();
@@ -162,5 +164,62 @@ public class FenetreJeu extends JFrame {
         fenetreDialogue.showMessageDialog( this, message, "Game Over",
                 JOptionPane.ERROR_MESSAGE );
         fenErr = fenetreDialogue.createDialog(this, "Game Over");
+    }
+
+    public void initSons(){
+
+        clipBoom = new Clip[6];
+        clipWow = new Clip[2];
+
+        for (int i = 0; i<6;i++){
+            try {
+                File fichierSon = new File("media/sons/boom"+String.valueOf(i+1)+".wav");
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(fichierSon);
+                clipBoom[i] = AudioSystem.getClip();
+                clipBoom[i].open(audioIn);
+                FloatControl gainControl = (FloatControl) clipBoom[i].getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(-20.0f);
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            }
+        }
+        for (int i = 0; i<2;i++){
+            try {
+                File fichierSon = new File("media/sons/wow"+String.valueOf(i+1)+".wav");
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(fichierSon);
+                clipWow[i] = AudioSystem.getClip();
+                clipWow[i].open(audioIn);
+                FloatControl gainControl = (FloatControl) clipWow[i].getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(-5.0f);
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void playBoom(){
+        int rand = (int)(Math.random()*5.+1);
+        if(clipBoom[rand].isRunning()){
+            clipBoom[rand].stop();
+        }
+        clipBoom[rand].setMicrosecondPosition(0);
+        clipBoom[rand].start();
+    }
+
+    public void playWow(){
+        int rand = (int)(Math.random()+1);
+        if(clipWow[rand].isRunning()){
+            clipWow[rand].stop();
+        }
+        clipWow[rand].setMicrosecondPosition(0);
+        clipWow[rand].start();
     }
 }
