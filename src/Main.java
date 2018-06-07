@@ -53,7 +53,7 @@ public class Main {
             clip.open(audioIn);
             FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             gainControl.setValue(-30.0f);
-            clip.loop(200);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -62,7 +62,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        ControlGroup cg = new ControlGroup();
+        ControlGroup cg = new ControlGroup(true);
         //plateau.jouer();
     }
 }

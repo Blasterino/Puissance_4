@@ -1,22 +1,27 @@
-import javax.imageio.ImageIO;
+import com.sun.jna.Native;
+import com.sun.jna.NativeLibrary;
+import uk.co.caprica.vlcj.binding.LibVlc;
+import uk.co.caprica.vlcj.player.MediaPlayerFactory;
+import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
+import uk.co.caprica.vlcj.player.embedded.windows.Win32FullScreenStrategy;
+import uk.co.caprica.vlcj.runtime.RuntimeUtil;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 
 public class FenetreMenu extends JFrame {
 
     JButton lancerPartie;
     JButton quitter;
     JComboBox cLigne,cColonne,cPuissance;
-    ImageIcon fondEcranTropBeau;
 
 
-    public FenetreMenu(){
-        //video();
+    public FenetreMenu(boolean video){
         initAttribut();
+        if(video){
+            video();
+            setVisible(false);
+        }
         creerVue();
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -98,22 +103,32 @@ public class FenetreMenu extends JFrame {
         quitter.addActionListener(cb);
         lancerPartie.addActionListener(cb);
     }
-    /* Fonction lançant la vidéo (marche po)
+
     public void video(){
+        JPanel pVideo = new JPanel();
+        Canvas can = new Canvas();
+        can.setBackground(Color.black);
+        pVideo.setLayout(new BorderLayout());
+        pVideo.add(can);
+        setContentPane(pVideo);
+        setVisible(true);
+
+        NativeLibrary.addSearchPath(RuntimeUtil.getLibVlcLibraryName(),"C:/Program Files/VideoLAN/VLC");
+        Native.loadLibrary(RuntimeUtil.getLibVlcLibraryName(),LibVlc.class);
+        MediaPlayerFactory mpf = new MediaPlayerFactory();
+        EmbeddedMediaPlayer emp = mpf.newEmbeddedMediaPlayer(new Win32FullScreenStrategy(this));
+        emp.setVideoSurface(mpf.newVideoSurface(can));
+        emp.setEnableMouseInputHandling(false);
+        String fichier = "media/intro.mov";
+        emp.prepareMedia(fichier);
+        emp.toggleFullScreen();
+        emp.play();
         try {
-            URL mediaURL = new File("media/intro.mov").toURI().toURL();
-            Player mediaPlayer = null;
-            mediaPlayer = Manager.createRealizedPlayer(mediaURL);
-            Component video = mediaPlayer.getVisualComponent();
-            add(video,BorderLayout.CENTER);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoPlayerException e) {
-            e.printStackTrace();
-        } catch (CannotRealizeException e) {
+            Thread.sleep(28000);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
 
 }

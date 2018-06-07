@@ -59,7 +59,7 @@ public class ControlButtonJeu implements ActionListener {
 
         if(e.getSource()==f.bQuitter){
             f.dispose();
-            ControlGroup cg = new ControlGroup();
+            ControlGroup cg = new ControlGroup(false);
         }
 
         if(e.getSource()==f.bSauterLigne){
@@ -71,7 +71,7 @@ public class ControlButtonJeu implements ActionListener {
         }
         if(fini){
             f.dispose();
-            ControlGroup cg = new ControlGroup();
+            ControlGroup cg = new ControlGroup(false);
         }
     }
 }

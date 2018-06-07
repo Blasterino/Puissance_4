@@ -4,9 +4,14 @@ public class ControlGroup {
     ControlButtonMenu controlb;
 
 
-    public ControlGroup(){
+    public ControlGroup(boolean video){
+        if(video){
+            this.fenetreMenu = new FenetreMenu(true);
+        } else {
+            this.fenetreMenu = new FenetreMenu(false);
+        }
 
-        this.fenetreMenu = new FenetreMenu();
+
         this.controlb = new ControlButtonMenu(this.fenetreMenu);
 
     }
