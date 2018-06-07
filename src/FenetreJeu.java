@@ -15,7 +15,7 @@ public class FenetreJeu extends JFrame {
     JButton bSauterLigne, bQuitter;
     Timer timer;
     JOptionPane fenetreDialogue;
-    Clip[] clipBoom,clipWow;
+    Clip[] clipBoom,clipWow,clipGG;
 
 
     public FenetreJeu(Plateau p){
@@ -170,6 +170,7 @@ public class FenetreJeu extends JFrame {
 
         clipBoom = new Clip[6];
         clipWow = new Clip[2];
+        clipGG = new Clip[4];
 
         for (int i = 0; i<6;i++){
             try {
@@ -203,6 +204,20 @@ public class FenetreJeu extends JFrame {
                 e.printStackTrace();
             }
         }
+        for (int i = 0; i<4;i++){
+            try {
+                File fichierSon = new File("media/sons/gg"+String.valueOf(i+1)+".wav");
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(fichierSon);
+                clipGG[i] = AudioSystem.getClip();
+                clipGG[i].open(audioIn);
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void playBoom(){
@@ -215,11 +230,21 @@ public class FenetreJeu extends JFrame {
     }
 
     public void playWow(){
-        int rand = (int)(Math.random()+1);
+        int rand = (int)(Math.random()*1.+1);
         if(clipWow[rand].isRunning()){
             clipWow[rand].stop();
         }
         clipWow[rand].setMicrosecondPosition(0);
         clipWow[rand].start();
+    }
+
+    public void playGG(){
+        int rand = (int)(Math.random()*3.+1);
+        System.out.println(rand);
+        if(clipGG[rand].isRunning()){
+            clipGG[rand].stop();
+        }
+        clipGG[rand].setMicrosecondPosition(0);
+        clipGG[rand].start();
     }
 }

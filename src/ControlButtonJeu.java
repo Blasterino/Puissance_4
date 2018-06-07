@@ -29,10 +29,12 @@ public class ControlButtonJeu implements ActionListener {
 
                         if (p.isCombination(i, indice)) {
                             if (p.getTour() % 2 == 0) {
+                                f.playGG();
                                 f.gameOver(2);// Le joueur 2 a gagné
                                 fini = true;
                             }
                             if (p.getTour() % 2 != 0) {
+                                f.playGG();
                                 f.gameOver(1);//le joueur 1 a gagné
                                 fini = true;
 
