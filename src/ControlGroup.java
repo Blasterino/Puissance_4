@@ -2,17 +2,17 @@ public class ControlGroup {
 
     FenetreMenu fenetreMenu;
     ControlButtonMenu controlb;
+    ControlMouse controlm;
 
 
     public ControlGroup(boolean video){
         if(video){
-            this.fenetreMenu = new FenetreMenu(true);
+            fenetreMenu = new FenetreMenu(true);
         } else {
-            this.fenetreMenu = new FenetreMenu(false);
+            fenetreMenu = new FenetreMenu(false);
         }
-
-
-        this.controlb = new ControlButtonMenu(this.fenetreMenu);
+        controlm = new ControlMouse(fenetreMenu);
+        controlb = new ControlButtonMenu(fenetreMenu);
 
     }
 

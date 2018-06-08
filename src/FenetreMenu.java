@@ -8,12 +8,15 @@ import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseListener;
 
 public class FenetreMenu extends JFrame {
 
     JButton lancerPartie;
     JButton quitter;
     JComboBox cLigne,cColonne,cPuissance;
+    Canvas can;
+    EmbeddedMediaPlayer emp;
 
 
     public FenetreMenu(boolean video){
@@ -106,7 +109,7 @@ public class FenetreMenu extends JFrame {
 
     public void video(){
         JPanel pVideo = new JPanel();
-        Canvas can = new Canvas();
+        can = new Canvas();
         can.setBackground(Color.black);
         pVideo.setLayout(new BorderLayout());
         pVideo.add(can);
@@ -116,7 +119,7 @@ public class FenetreMenu extends JFrame {
         NativeLibrary.addSearchPath(RuntimeUtil.getLibVlcLibraryName(),"C:/Program Files/VideoLAN/VLC");
         Native.loadLibrary(RuntimeUtil.getLibVlcLibraryName(),LibVlc.class);
         MediaPlayerFactory mpf = new MediaPlayerFactory();
-        EmbeddedMediaPlayer emp = mpf.newEmbeddedMediaPlayer(new Win32FullScreenStrategy(this));
+        emp = mpf.newEmbeddedMediaPlayer(new Win32FullScreenStrategy(this));
         emp.setVideoSurface(mpf.newVideoSurface(can));
         emp.setEnableMouseInputHandling(false);
         String fichier = "media/intro.mov";
@@ -124,10 +127,21 @@ public class FenetreMenu extends JFrame {
         emp.toggleFullScreen();
         emp.play();
         try {
-            Thread.sleep(28000);
+            Thread.sleep(2000);
+            while(emp.isPlaying()){
+                Thread.sleep(50);
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void addControlMouse(MouseListener ml){
+        can.addMouseListener(ml);
+    }
+
+    public void stopMedia(){
+        emp.stop();
     }
 
 
