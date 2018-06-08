@@ -240,7 +240,6 @@ public class FenetreJeu extends JFrame {
 
     public void playGG(){
         int rand = (int)(Math.random()*3.+1);
-        System.out.println(rand);
         if(clipGG[rand].isRunning()){
             clipGG[rand].stop();
         }

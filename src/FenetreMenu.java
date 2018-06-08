@@ -17,6 +17,7 @@ public class FenetreMenu extends JFrame {
     JComboBox cLigne,cColonne,cPuissance;
     Canvas can;
     EmbeddedMediaPlayer emp;
+    JPanel pVideo;
 
 
     public FenetreMenu(boolean video){
@@ -108,7 +109,7 @@ public class FenetreMenu extends JFrame {
     }
 
     public void video(){
-        JPanel pVideo = new JPanel();
+        pVideo = new JPanel();
         can = new Canvas();
         can.setBackground(Color.black);
         pVideo.setLayout(new BorderLayout());
@@ -135,14 +136,5 @@ public class FenetreMenu extends JFrame {
             e.printStackTrace();
         }
     }
-
-    public void addControlMouse(MouseListener ml){
-        can.addMouseListener(ml);
-    }
-
-    public void stopMedia(){
-        emp.stop();
-    }
-
 
 }
