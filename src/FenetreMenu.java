@@ -125,7 +125,7 @@ public class FenetreMenu extends JFrame {
         emp.setEnableMouseInputHandling(false);
         String fichier = "media/intro.mov";
         emp.prepareMedia(fichier);
-        emp.toggleFullScreen();
+        //emp.toggleFullScreen();
         emp.play();
         try {
             Thread.sleep(2000);

@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.Scanner;
 
 public class Plateau {
@@ -21,11 +22,14 @@ public class Plateau {
     private String couleurDeuxieme;
     private BufferedImage[] btab;
     private ImageIcon[] itab;
+    private int pts1,pts2;
 
 
     public Plateau(){}
 
     public Plateau(int ligne, int col, int puissancePlateau) {
+        this.pts1=0;
+        this.pts2=0;
         this.plateau = new char[ligne][col];
         this.tour = 1;
         this.puissancePlateau = puissancePlateau;
@@ -459,5 +463,21 @@ public class Plateau {
 
     private double random() {
         return Math.random();
+    }
+
+    public int getPts1() {
+        return pts1;
+    }
+
+    public void setPts1(int pts1) {
+        this.pts1 = pts1;
+    }
+
+    public int getPts2() {
+        return pts2;
+    }
+
+    public void setPts2(int pts2) {
+        this.pts2 = pts2;
     }
 }

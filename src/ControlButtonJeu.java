@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class ControlButtonJeu implements ActionListener {
 
@@ -21,6 +22,13 @@ public class ControlButtonJeu implements ActionListener {
         for (int i=0; i<f.listeColonnes.length; i++){
             if(e.getSource()==f.listeColonnes[i]){
                 f.playBoom();
+                Random r = new Random();
+                if (p.getTour() % 2 != 0) {
+                    p.setPts1(p.getPts1()+(r.nextInt(100)));
+                }
+                else if(p.getTour() % 2 == 0) {
+                    p.setPts2(p.getPts2()+(r.nextInt(100)));
+                }
                 p.mettrePion(i);
                 f.updateGrille();
                 for (int j = 0; j < p.getPlateau().length; j++) {

@@ -10,7 +10,7 @@ public class FenetreJeu extends JFrame {
 
     Plateau plateau;
     JLabel[][] grille;
-    JLabel lTour, lJoueur;
+    JLabel lTour, lJoueur, lPts1, lPts2;
     JButton[] listeColonnes;
     JButton bSauterLigne, bQuitter;
     Timer timer;
@@ -34,6 +34,20 @@ public class FenetreJeu extends JFrame {
     public void initAttribut(){
 
         //création des boutons pour ajouter au niveau des colonnes
+        lPts1= new JLabel("Point de J1 : "+plateau.getPts1()+"000000");
+        lPts1.setForeground(Color.white);
+        lPts2= new JLabel("Point de J2 : "+plateau.getPts1()+"000000");
+        lPts2.setForeground(Color.white);
+        timer = new Timer(10, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                plateau.setPts1(plateau.getPts1()+1);
+                plateau.setPts2(plateau.getPts2()+1);
+                lPts1.setText("Point de J1 : "+plateau.getPts1()+"000000");
+                lPts2.setText("Point de J2 : "+plateau.getPts2()+"000000");
+            }
+        });
+        timer.start();
         listeColonnes = new JButton[plateau.getColonne()];
         for (int i=0; i<plateau.getColonne();i++){
             listeColonnes[i] = new JButton();
@@ -96,10 +110,12 @@ public class FenetreJeu extends JFrame {
             }
         }
         //panel bas
-        JPanel panelBas = new JPanel();
+        JPanel panelBas = new JPanel(new FlowLayout(FlowLayout.CENTER,10,50));
         panelBas.setOpaque(false);
-        panelBas.setLayout(new BoxLayout(panelBas,BoxLayout.X_AXIS));
+        //panelBas.setLayout(new BoxLayout(panelBas,BoxLayout.X_AXIS));
+        panelBas.add(lPts1);
         panelBas.add(bSauterLigne);
+        panelBas.add(lPts2);
         //ajout
         JPanelFond container = new JPanelFond();
 
