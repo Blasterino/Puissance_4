@@ -22,18 +22,18 @@ public class FenetreMenu extends JFrame {
 
     public FenetreMenu(boolean video){
         initAttribut();
+        setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds(0, 0, screenSize.width-100, screenSize.height-100);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         if(video){
             video();
             setVisible(false);
         }
         creerVue();
-        setSize(Toolkit.getDefaultToolkit().getScreenSize());
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds(0, 0, screenSize.width-100, screenSize.height-100);
         setVisible(true);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void initAttribut(){

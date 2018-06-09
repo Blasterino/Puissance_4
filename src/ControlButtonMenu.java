@@ -41,7 +41,7 @@ public class ControlButtonMenu implements ActionListener {
         }
 
         if(e.getSource()==fenetreMenu.quitter){
-            fenetreMenu.dispose();
+            System.exit(0);
         }
     }
 }
