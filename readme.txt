@@ -1,0 +1,1 @@
+Avant de lancer le jeu : ajouter les packages jna et vlcj. Il faut également avoir installé VLC correspondant au vlcj installé (32 ou 64 bits).
